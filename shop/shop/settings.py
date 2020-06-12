@@ -136,4 +136,9 @@ LOGOUT_REDIRECT_URL = 'index_page'
 
 LOGIN_URL = 'sign_in'
 
-SIDE_ID = 1
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
+SITE_ID = 1
