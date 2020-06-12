@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views import generic
+from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy, reverse
 
 from .models import Watch
+from .forms import AuthUserForm
 
 
 class WatchCreateView(generic.CreateView):
@@ -38,3 +40,9 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return Watch.objects.all().order_by('-create_at')[:4]
+
+
+class SignInView(LoginView):
+    template_name = 'catalog/sign_in.html'
+    form_class = AuthUserForm
+    success_url = reverse_lazy('index_page')

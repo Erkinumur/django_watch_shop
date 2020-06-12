@@ -16,21 +16,23 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 
 
 from catalog.views import WatchCreateView, WatchUpdateView, WatchDeleteView, WatchListView, WatchDetailView
-from catalog.views import IndexView
+from catalog.views import IndexView, SignInView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('detail/<int:pk>/', WatchDetailView.as_view(), name='watch_detail'),
     path('', IndexView.as_view(), name='index_page'),
     path('product_list/', WatchListView.as_view(), name='product_list'),
     path('watch_new/', WatchCreateView.as_view(), name='watch_new'),
     path('edit/<int:pk>/', WatchUpdateView.as_view(), name='watch_edit'),
     path('delete/<int:pk>/', WatchDeleteView.as_view(), name='watch_delete'),
+    path('sign_in/', SignInView.as_view(), name='sign_in'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
