@@ -21,7 +21,7 @@ from django.urls import path, include
 
 
 from catalog.views import WatchCreateView, WatchUpdateView, WatchDeleteView, WatchListView, WatchDetailView
-from catalog.views import IndexView, SignInView
+from catalog.views import IndexView, FilterListView, SearchProductView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,10 +29,11 @@ urlpatterns = [
     path('detail/<int:pk>/', WatchDetailView.as_view(), name='watch_detail'),
     path('', IndexView.as_view(), name='index_page'),
     path('product_list/', WatchListView.as_view(), name='product_list'),
-    path('watch_new/', WatchCreateView.as_view(), name='watch_new'),
-    path('edit/<int:pk>/', WatchUpdateView.as_view(), name='watch_edit'),
-    path('delete/<int:pk>/', WatchDeleteView.as_view(), name='watch_delete'),
-    path('sign_in/', SignInView.as_view(), name='sign_in'),
+    path('product_list/filter/', FilterListView.as_view(), name='filter'),
+    path('product_list/search/', SearchProductView.as_view(), name='search'),
+    # path('watch_new/', WatchCreateView.as_view(), name='watch_new'),
+    # path('edit/<int:pk>/', WatchUpdateView.as_view(), name='watch_edit'),
+    # path('delete/<int:pk>/', WatchDeleteView.as_view(), name='watch_delete'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
