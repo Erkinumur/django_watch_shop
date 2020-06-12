@@ -55,11 +55,11 @@
                         <nav class="menu">
                             <ul class="main_menu">
                                 <li>
-                                    <a href="index.html">Home</a>
+                                    <a href="{% url 'index_page' %}">Home</a>
                                     <ul class="sub_menu">
-                                        <li><a href="index.html">Homepage V1</a></li>
-                                        <li><a href="home-02.html">Homepage V2</a></li>
-                                        <li><a href="home-03.html">Homepage V3</a></li>
+                                        <li><a href="#">Homepage V1</a></li>
+                                        <li><a href="#">Homepage V2</a></li>
+                                        <li><a href="#">Homepage V3</a></li>
                                     </ul>
                                 </li>
 
@@ -68,23 +68,19 @@
                                 </li>
 
                                 <li class="sale-noti">
-                                    <a href="product.html">Sale</a>
+                                    <a href="#">Sale</a>
                                 </li>
 
                                 <li>
-                                    <a href="cart.html">Features</a>
+                                    <a href="#">Features</a>
                                 </li>
 
                                 <li>
-                                    <a href="blog.html">Blog</a>
+                                    <a href="#">About</a>
                                 </li>
 
                                 <li>
-                                    <a href="about.html">About</a>
-                                </li>
-
-                                <li>
-                                    <a href="contact.html">Contact</a>
+                                    <a href="#">Contact</a>
                                 </li>
                             </ul>
                         </nav>
@@ -95,7 +91,7 @@
                         <a href="#" class="header-wrapicon1 dis-block">
                             <img src="{% static 'catalog/images/icons/icon-header-01.png' %}" class="header-icon1" alt="ICON">
                         </a>
-
+                        {{ user }}
                         <span class="linedivide1"></span>
 
                         <div class="header-wrapicon2">

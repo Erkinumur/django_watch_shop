@@ -1,0 +1,10 @@
+<div class="container mt-5 ">
+        <h1 >Приветствую</h1>
+        <h2>Для начала работы авторизуйтесь</h2>
+        <form method="post" class="mt-4 col-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success mt-3">Войти</button>
+            <a href="#" role="button" class="btn btn-primary mt-3">Регистрация</a>
+        </form>
+</div>
