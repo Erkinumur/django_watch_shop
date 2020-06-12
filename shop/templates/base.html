@@ -88,10 +88,10 @@
 
                     <!-- Header Icon -->
                     <div class="header-icons">
-                        <a href="#" class="header-wrapicon1 dis-block">
+                        <a href="{% if user.is_authenticated %}{% url 'account_logout' %}{% else %}{% url 'account_login' %}{% endif %}" class="header-wrapicon1 dis-block">
                             <img src="{% static 'catalog/images/icons/icon-header-01.png' %}" class="header-icon1" alt="ICON">
                         </a>
-                        {{ user }}
+                        <span>{{ user }}</span>
                         <span class="linedivide1"></span>
 
                         <div class="header-wrapicon2">
