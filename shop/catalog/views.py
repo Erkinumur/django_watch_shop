@@ -42,6 +42,8 @@ class WatchListView(FilterMixin, generic.ListView):
     model = Watch
     template_name='catalog/product_list.html'
 
+    paginate_by = 6
+
 
 class WatchDetailView(generic.DetailView):
     model = Watch
@@ -53,7 +55,7 @@ class IndexView(generic.ListView):
     template_name = 'catalog/index.html'
 
     def get_queryset(self):
-        return Watch.objects.all().order_by('-create_at')[:4]
+        return Watch.objects.all().order_by('-create_at')[:8]
 
 
 class FilterListView(FilterMixin, generic.ListView):
@@ -62,9 +64,9 @@ class FilterListView(FilterMixin, generic.ListView):
 
     def get_queryset(self):
         queryset = Watch.objects.filter(
-            Q(group__in=self.request.GET.getlist('category')) |
+            Q(group__in=self.request.GET.getlist('category')),
             Q(brand__in=self.request.GET.getlist('brand'))
-        )
+        ).distinct()
         return queryset
 
 

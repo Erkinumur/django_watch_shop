@@ -27,6 +27,9 @@ class Watch(models.Model):
     image = models.ImageField(upload_to='media', null=True, blank=True, verbose_name='Фото')
     create_at = models.DateTimeField(auto_now_add=True)
 
+    def get_group(self):
+        return ",".join([str(p) for p in self.group.all()])
+
     def __str__(self):
         return self.title
 
