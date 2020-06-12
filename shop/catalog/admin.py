@@ -7,6 +7,7 @@ from .models import Brand, Group, Watch, Review
 # admin.site.register(Watch)
 admin.site.register(Review)
 
+
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
