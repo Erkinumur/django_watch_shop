@@ -20,7 +20,7 @@ from django.urls import path, include
 
 
 
-from catalog.views import WatchCreateView, WatchUpdateView, WatchDeleteView, WatchListView, WatchDetailView
+from catalog.views import WatchCreateView, WatchUpdateView, WatchDeleteView, WatchListView, WatchDetailView, AddReview
 from catalog.views import IndexView, FilterListView, SearchProductView
 
 urlpatterns = [
@@ -31,6 +31,7 @@ urlpatterns = [
     path('product_list/', WatchListView.as_view(), name='product_list'),
     path('product_list/filter/', FilterListView.as_view(), name='filter'),
     path('product_list/search/', SearchProductView.as_view(), name='search'),
+    path('add_review/<int:pk>/', AddReview.as_view(), name='add_review'),
     # path('watch_new/', WatchCreateView.as_view(), name='watch_new'),
     # path('edit/<int:pk>/', WatchUpdateView.as_view(), name='watch_edit'),
     # path('delete/<int:pk>/', WatchDeleteView.as_view(), name='watch_delete'),

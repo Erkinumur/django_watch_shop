@@ -3,9 +3,10 @@ from django.views import generic
 from django.db.models import Q
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy, reverse
+from django.views.generic.base import View
 
 from .models import Watch, Group, Brand
-from .forms import AuthUserForm
+from .forms import AddReviewForm
 
 
 class FilterMixin:
@@ -79,3 +80,15 @@ class SearchProductView(FilterMixin, generic.ListView):
         context = super().get_context_data(*args, **kwargs)
         context['q'] = self.request.GET.get('q')
         return context
+
+
+class AddReview(View):
+    def post(self, request, pk):
+        form = AddReviewForm(request.POST)
+        watch = Watch.objects.get(pk=pk)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.watch = watch
+            form.user = request.user
+            form.save()
+        return redirect(watch.get_absolute_url())

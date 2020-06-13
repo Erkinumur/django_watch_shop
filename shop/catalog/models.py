@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
@@ -32,3 +33,19 @@ class Watch(models.Model):
 
     def get_absolute_url(self):
         return reverse('watch_detail', args=[self.pk])
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField('Отзыв')
+    parent = models.ForeignKey(
+        'self', on_delete=models.SET_NULL, verbose_name='Родитель', blank=True, null=True
+    )
+    watch = models.ForeignKey(Watch, verbose_name='Товар', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user.username} - {self.watch}'
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
