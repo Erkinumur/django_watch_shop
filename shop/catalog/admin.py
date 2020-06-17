@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from .models import Brand, Group, Watch, Review
 
@@ -6,6 +7,12 @@ from .models import Brand, Group, Watch, Review
 # admin.site.register(Group)
 # admin.site.register(Watch)
 admin.site.register(Review)
+
+
+class ReviewInline(admin.TabularInline):
+    model = Review
+    extra = 1
+    readonly_fields = ['user', 'parent']
 
 
 @admin.register(Brand)
@@ -23,9 +30,22 @@ class GroupAdmin(admin.ModelAdmin):
     list_filter = ('name',)
     search_fields = ('name',)
 
+
 @admin.register(Watch)
 class WatchAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'brand', 'get_group', 'price', 'description', 'image')
-    list_display_links = ('title', 'brand', 'get_group', 'price', 'description')
-    list_filter = ('title', 'brand', 'group', 'price')
+    list_display = ('id', 'title', 'brand', 'get_category', 'price', 'description', 'get_image')
+    list_display_links = ('title',)
+    list_filter = ('brand', 'group', 'price')
     search_fields = ('title', 'brand__name', 'group__name')
+    inlines = [ReviewInline]
+    save_on_top = True
+
+    def get_image(self, obj):
+        return mark_safe(f'<img src={obj.image.url} width="50" height="60"')
+
+    get_image.short_description = 'Изображение'
+
+    def get_category(self, obj):
+        return mark_safe(", ".join([str(i) for i in obj.group.all()]))
+
+    get_category.short_description = 'Категории'
