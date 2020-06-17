@@ -64,10 +64,18 @@ class FilterListView(FilterMixin, generic.ListView):
     template_name = 'catalog/product_list.html'
 
     def get_queryset(self):
-        queryset = Watch.objects.filter(
-            Q(group__in=self.request.GET.getlist('category')),
-            Q(brand__in=self.request.GET.getlist('brand'))
-        ).distinct()
+        categories = self.request.GET.getlist('category')
+        brands = self.request.GET.getlist('brand')
+        if categories and brands:
+            queryset = Watch.objects.filter(
+                Q(group__in=self.request.GET.getlist('category')),
+                Q(brand__in=self.request.GET.getlist('brand'))
+            ).distinct()
+        else:
+            queryset = Watch.objects.filter(
+                Q(group__in=self.request.GET.getlist('category'))|
+                Q(brand__in=self.request.GET.getlist('brand'))
+            ).distinct()
         return queryset
 
 
@@ -94,3 +102,8 @@ class AddReview(View):
             form.user = request.user
             form.save()
         return redirect(watch.get_absolute_url())
+
+
+class AboutView(View):
+    def get(self, request):
+        return render(request, 'catalog/about.html')

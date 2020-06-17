@@ -34,18 +34,13 @@
                             <img src="{{ watch.image.url }}" alt="IMG-PRODUCT">
                         </div>
                     </div>
-
-                    <div class="item-slick3" data-thumb="{% static 'catalog/images/thumb-item-02.jpg' %}">
+                    {% for img in watch.images.all %}
+                    <div class="item-slick3" data-thumb="{{ img.image.url }}">
                         <div class="wrap-pic-w">
-                            <img src="{% static 'catalog/images/product-detail-02.jpg' %}" alt="IMG-PRODUCT">
+                            <img src="{{ img.image.url }}" alt="{{ img.title }}">
                         </div>
                     </div>
-
-                    <div class="item-slick3" data-thumb="{% static 'catalog/images/thumb-item-03.jpg' %}">
-                        <div class="wrap-pic-w">
-                            <img src="{% static 'catalog/images/product-detail-03.jpg' %}" alt="IMG-PRODUCT">
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -88,7 +83,7 @@
 
             <div class="p-b-45">
                 <span class="s-text8 m-r-35">Brand: {{ watch.brand }}</span>
-                <span class="s-text8">Categories: {{ watch.group }}</span>
+                <span class="s-text8">Categories: {{ watch.get_group }}</span>
             </div>
 
             <!--  -->
@@ -127,6 +122,7 @@
                         </div>
                     </div>
                     {% endfor %}
+                    {% if user.is_authenticated %}
                     <div class="row">
                         <div class="single-form-left">
                             <!-- contact form grid -->
@@ -152,6 +148,7 @@
                             <!--  //contact form grid ends here -->
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
