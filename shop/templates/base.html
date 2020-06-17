@@ -73,26 +73,45 @@
                                 </li>
 
                                 <li>
-                                    <a href="#">Features</a>
+                                    <a href="#">Категории</a>
+                                        <ul class="sub_menu">
+                                            {% for category in all_categories %}
+                                            <li><a href="{% url 'filter' %}?category={{ category.pk }}">{{ category }}</a></li>
+                                            {% endfor %}
+                                        </ul>
                                 </li>
-
                                 <li>
-                                    <a href="#">About</a>
+                                    <a href="#">Брэнды</a>
+                                        <ul class="sub_menu">
+                                            {% for brand in all_brands %}
+                                            <li><a href="{% url 'filter' %}?brand={{ brand.pk }}">{{ brand }}</a></li>
+                                            {% endfor %}
+                                        </ul>
                                 </li>
-
+                                <li>
+                                    <a href="{% url 'about' %}">About</a>
+                                </li>
+                                {% if user.is_staff %}
                                 <li>
                                     <a href="admin/catalog/watch">Админ панель</a>
                                 </li>
+                                {% endif %}
                             </ul>
                         </nav>
                     </div>
 
                     <!-- Header Icon -->
+
                     <div class="header-icons">
-                        <a href="{% if user.is_authenticated %}{% url 'account_logout' %}{% else %}{% url 'account_login' %}{% endif %}" class="header-wrapicon1 dis-block">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'account_logout' %}" class="header-wrapicon1 dis-block">
                             <img src="{% static 'catalog/images/icons/icon-header-01.png' %}" class="header-icon1" alt="ICON">
                         </a>
                         <span>{{ user }}</span>
+                               <a href="{% url 'account_logout' %}">Выйти</a>
+                        {% else %}
+                        <a href="{% url 'account_login' %}">Войти</a>
+                        {% endif %}
                         <span class="linedivide1"></span>
 
                         <div class="header-wrapicon2">
@@ -360,6 +379,25 @@
 	<footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
 		<div class="flex-w p-b-90">
 
+            <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
+				<h4 class="s-text12 p-b-30">
+					GET IN TOUCH
+				</h4>
+
+				<div>
+					<p class="s-text7 w-size27">
+						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+					</p>
+
+					<div class="flex-m p-t-30">
+						<a href="#" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
+						<a href="#" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
+						<a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
+						<a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
+						<a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
+					</div>
+				</div>
+			</div>
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">

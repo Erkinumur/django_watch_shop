@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Brand, Group, Watch, Review
+from .models import Brand, Group, Watch, Review, Image
 
 # admin.site.register(Brand)
 # admin.site.register(Group)
@@ -13,6 +13,11 @@ class ReviewInline(admin.TabularInline):
     model = Review
     extra = 1
     readonly_fields = ['user', 'parent']
+
+
+class ImageInline(admin.TabularInline):
+    model = Image
+    extra = 1
 
 
 @admin.register(Brand)
@@ -37,7 +42,7 @@ class WatchAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
     list_filter = ('brand', 'group', 'price')
     search_fields = ('title', 'brand__name', 'group__name')
-    inlines = [ReviewInline]
+    inlines = [ImageInline, ReviewInline]
     save_on_top = True
 
     def get_image(self, obj):

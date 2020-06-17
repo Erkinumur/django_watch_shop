@@ -25,17 +25,23 @@ class Watch(models.Model):
     group = models.ManyToManyField(Group, related_name='watchs', verbose_name='Котегория')
     price = models.PositiveIntegerField(verbose_name='Цена')
     description = models.TextField(verbose_name='Описание')
-    image = models.ImageField(upload_to='media', null=True, blank=True, verbose_name='Фото')
+    image = models.ImageField(upload_to='media', null=True, blank=True, verbose_name='Главное фото')
     create_at = models.DateTimeField(auto_now_add=True)
 
     def get_group(self):
-        return ",".join([str(p) for p in self.group.all()])
+        return ", ".join([str(p) for p in self.group.all()])
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('watch_detail', args=[self.pk])
+
+
+class Image(models.Model):
+    title = models.CharField(max_length=50, verbose_name='Название')
+    image = models.ImageField(upload_to='media', verbose_name='Изображение')
+    product = models.ForeignKey(Watch, on_delete=models.CASCADE, related_name='images', verbose_name='Товар')
 
 
 class Review(models.Model):
