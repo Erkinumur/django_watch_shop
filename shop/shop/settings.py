@@ -133,8 +133,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 LOGIN_REDIRECT_URL = 'index_page'
 LOGOUT_REDIRECT_URL = 'index_page'
+CART_SESSION_ID = 'cart'
 
 LOGIN_URL = 'sign_in'
 
