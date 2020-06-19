@@ -13,5 +13,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ['id', 'first_name', 'city',
                     'address', 'phone', 'paid',
                     'created']
+    list_display_links = ('id', 'first_name')
     list_filter = ['paid', 'created']
     inlines = [OrderItemInline]

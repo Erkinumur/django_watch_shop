@@ -11,12 +11,20 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Брэнд'
+        verbose_name_plural = 'Брэнды'
+
 
 class Group(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
 
 class Watch(models.Model):
@@ -36,6 +44,10 @@ class Watch(models.Model):
 
     def get_absolute_url(self):
         return reverse('watch_detail', args=[self.pk])
+
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
 
 
 class Image(models.Model):

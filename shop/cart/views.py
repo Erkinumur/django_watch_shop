@@ -14,7 +14,6 @@ from .models import Order, OrderItem
 def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Watch, id=product_id)
-    print(request.POST.getlist('quantity'))
     cart.add(product=product,
              quantity=int(request.POST.getlist('quantity')[0]),
              # update_quantity=request.POST.getlist('update')[0]

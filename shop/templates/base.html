@@ -93,7 +93,7 @@
                                 </li>
                                 {% if user.is_staff %}
                                 <li>
-                                    <a href="admin/catalog/watch">Админ панель</a>
+                                    <a href="http://127.0.0.1:8000/admin/catalog/watch/">Админ панель</a>
                                 </li>
                                 {% endif %}
                             </ul>
@@ -400,35 +400,7 @@
 			</div>
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-				<h4 class="s-text12 p-b-30">
-					Categories
-				</h4>
 
-				<ul>
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Men
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Women
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Dresses
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Sunglasses
-						</a>
-					</li>
-				</ul>
 			</div>
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
@@ -438,26 +410,26 @@
 
 				<ul>
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Search
+						<a href="{% url 'index_page' %}" class="s-text7">
+							Главная
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="{% url 'product_list' %}}" class="s-text7">
+							Каталог
+						</a>
+					</li>
+
+					<li class="p-b-9">
+						<a href="{% url 'about' %}" class="s-text7">
 							About Us
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Contact Us
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Returns
+						<a href="{% url 'cart_detail' %}" class="s-text7">
+							Корзина
 						</a>
 					</li>
 				</ul>

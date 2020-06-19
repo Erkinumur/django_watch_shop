@@ -63,6 +63,8 @@ class FilterListView(FilterMixin, generic.ListView):
     model = Watch
     template_name = 'catalog/product_list.html'
 
+    # paginate_by = 1
+
     def get_queryset(self):
         categories = self.request.GET.getlist('category')
         brands = self.request.GET.getlist('brand')
