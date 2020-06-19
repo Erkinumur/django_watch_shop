@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+	<!-- Title Page -->
+	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url({% static 'catalog/images/heading-pages-01.jpg' %});">
+		<h2 class="l-text2 t-center">
+			Orders
+		</h2>
+	</section>
+
+	<!-- Cart -->
+	<section class="cart bgwhite p-t-70 p-b-100">
+		<div class="container">
+			<!-- Cart item -->
+			<div class="container-table-cart pos-relative">
+				<div class="wrap-table-shopping-cart bgwhite">
+					<table class="table-shopping-cart">
+						<tr class="table-head">
+							<th class="column-1"></th>
+							<th class="column-2">Номер заказа</th>
+							<th class="column-3">Сумма</th>
+							<th class="column-4 p-l-70">Дата</th>
+							<th class="column-5"></th>
+						</tr>
+						{% for order in order_list %}
+						<tr class="table-row">
+							<td class="column-1"></td>
+							<td class="column-2"><a href="{{ order.get_absolute_url }}">{{ order }}</td></a>
+							<td class="column-3">{{ order.get_total_cost }} сом</td>
+							<td class="column-4">{{ order.created }}</td>
+							<td class="column-5"></td>
+<!--							<td class="column-6"><a href="{% url 'cart_remove' product.id %}">Remove</a></td>-->
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+			</form>
+		</div>
+	</section>
+
+{% endblock content %}

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.account',
 
     'catalog',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'catalog.global_context.get_categories_brands',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -133,14 +135,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+SESSION_COOKIE_AGE = 1209600
+CART_SESSION_ID = 'cart'
 
 LOGIN_REDIRECT_URL = 'index_page'
 LOGOUT_REDIRECT_URL = 'index_page'
-CART_SESSION_ID = 'cart'
 
-LOGIN_URL = 'sign_in'
+LOGIN_URL = 'account_login'
 
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_USERNAME_MIN_LENGTH = 4
